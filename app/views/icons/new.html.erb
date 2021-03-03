@@ -1,0 +1,13 @@
+ <%= form_for @icon,url: icons_path, html: { multipart: true } do |f| %>
+  <div>
+    <%= f.label "Title"%>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label "Image"%>
+    <%= f.file_field :image %>
+  </div>
+
+  <%= f.submit "Submit" %>
+<% end %>

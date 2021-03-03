@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_24_154458) do
+ActiveRecord::Schema.define(version: 2021_03_03_151550) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer "recipient_id"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 2021_02_24_154458) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipient_id"], name: "index_conversations_on_recipient_id"
     t.index ["sender_id"], name: "index_conversations_on_sender_id"
+  end
+
+  create_table "icons", force: :cascade do |t|
+    t.string "title"
+    t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "invitations", force: :cascade do |t|
