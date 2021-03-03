@@ -1,0 +1,22 @@
+<h1>Room Chat</h1>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-6 col-lg-4">
+      	<%= form_for :room ,remote: true ,url:rooms_path  do |f| %>
+    	 		<%= f.text_field :name %>
+   				<%= f.submit 'create' ,class: "btn btn-primary" %>	
+		<%  end %>
+    </div>
+    <div class="col-sm-9 col-md-6 col-lg-8">
+    	<ul class="list-group">
+    		<% @rooms.each do |room| %>
+    		  <li class="list-group-item">
+    		  	<%= link_to "#{room.name}",room_path(room.id) %>
+    		 	  
+    		   </li>
+			<% end %>
+		</ul>
+    </div>
+  </div>
+</div>

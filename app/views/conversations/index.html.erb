@@ -1,0 +1,36 @@
+
+<h1>
+	Talk to <%= @conversation.opposed_user(current_user).email %>
+	
+</h1>
+
+
+    <div class="container-fluid">
+      <div class="row">
+       <div class="col-sm-3 col-md-6 col-lg-3">
+       </div>
+      <div class="col-sm-9 col-md-6 col-lg-5">
+        <div style="display: block;">
+          <div class="card">
+             <div id="msg" class="card-body"  style="width: 100%;height: 400px">
+              <% @conversation.new_messages.each do |user_mes|  %>
+           
+                       <p>
+                    - <%= current_user.id == user_mes.user_id ? 'You' : @conversation.opposed_user(current_user).email %> : 
+                        <%= user_mes.body %>
+                      </p>
+          
+               <% end %>
+             </div>
+            </div>
+          <%= form_for :message ,remote: true,url: messages_path(new_conversation_id: @conversation.id) do |f| %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.text_area :body ,style: "width:100%"%>
+            <%= f.submit 'Send' ,class: "btn btn-primary mt-2" %>
+          <%  end %>
+      </div>
+    </div>
+      <div class="col-sm-9 col-md-6 col-lg-2">
+      </div>
+    </div>
+</div>

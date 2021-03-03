@@ -1,0 +1,40 @@
+
+<div id="room-id" data-room-id="<%= @room.try(:id) %>"></div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-6 col-lg-3">
+      <h1><%= @room.name  %></h1>
+    </div>
+    <div class="col-sm-9 col-md-6 col-lg-5">
+    	<div style="display: block;">
+    		<div class="card">
+   				 <div id="group_message" class="card-body"  style="width: 100%;height: 400px">
+   				 	<% @room.message_groups.each do |message| %>
+   				 		<p>
+   				 			- <%= message.user.email %> : 
+   				 			<%= message.content %>
+   				 		</p>
+						
+   					 <% end %>
+   				 </div>
+  			</div>
+  			<%= form_for :group_message ,remote: true ,url:group_messages_path(room_id: @room.id)  do |f| %>
+  					<%= f.hidden_field :user_id, value: current_user.id %>
+	    	 		<%= f.text_field :content ,style: "width:100%" %>
+	   				<%= f.submit 'Send' ,class: "btn btn-primary mt-2" %>	
+			<%  end %>
+    	</div>
+    </div>
+     <div class="col-sm-9 col-md-6 col-lg-2">
+      <h1>Members</h1>
+     	 <ul class="list-group">
+      		<% @users.each do |user| %>
+ 				 <li class="list-group-item list-group-item-<%= current_user.email == user ? 'danger' : "success" %>">
+ 				 	<%= user %>
+ 				 </li>
+			<% end %>
+		</ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<h1>
+	My friends
+	<%=  link_to "HomePage",root_path%>
+</h1>
+
+<ul>
+  <% @listFriends.each do |user| %>
+    <li>
+      <%= user.email %>
+    </li>
+    <li>
+      <%= link_to 'Inbox!' ,conversations_path(user_id: user.id),method: :post %>
+    </li>
+  <% end %>
+</ul>

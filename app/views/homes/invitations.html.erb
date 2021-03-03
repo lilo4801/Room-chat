@@ -1,0 +1,14 @@
+<h1>
+	My invitations
+</h1>
+<h4>List want to add friends</h4>
+	<ul>
+	  <% @invitations.each do |invitation| %>
+	    <li>
+	      <%= invitation.user.email %>
+	    </li>
+	    <li>
+	    	<%= link_to 'Accept ',add_friends_path(id: invitation.user_id) ,method: :post %>
+	    </li>
+	  <% end %>
+	</ul>
