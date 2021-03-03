@@ -40,15 +40,6 @@ ActiveRecord::Schema.define(version: 2021_02_24_154458) do
     t.index ["user_id"], name: "index_message_groups_on_user_id"
   end
 
-  create_table "messages", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "content"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "conversation_id"
-    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
-  end
-
   create_table "new_messages", force: :cascade do |t|
     t.text "body"
     t.integer "user_id", null: false
@@ -80,7 +71,6 @@ ActiveRecord::Schema.define(version: 2021_02_24_154458) do
   add_foreign_key "invitations", "users"
   add_foreign_key "message_groups", "rooms"
   add_foreign_key "message_groups", "users"
-  add_foreign_key "messages", "conversations"
   add_foreign_key "new_messages", "conversations"
   add_foreign_key "new_messages", "users"
 end
