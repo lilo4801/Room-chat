@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_24_154458) do
+ActiveRecord::Schema.define(version: 2021_03_03_151550) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer "recipient_id"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 2021_02_24_154458) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipient_id"], name: "index_conversations_on_recipient_id"
     t.index ["sender_id"], name: "index_conversations_on_sender_id"
+  end
+
+  create_table "icons", force: :cascade do |t|
+    t.string "title"
+    t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "invitations", force: :cascade do |t|
@@ -38,15 +45,6 @@ ActiveRecord::Schema.define(version: 2021_02_24_154458) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_message_groups_on_room_id"
     t.index ["user_id"], name: "index_message_groups_on_user_id"
-  end
-
-  create_table "messages", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "content"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "conversation_id"
-    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
   end
 
   create_table "new_messages", force: :cascade do |t|
@@ -80,7 +78,6 @@ ActiveRecord::Schema.define(version: 2021_02_24_154458) do
   add_foreign_key "invitations", "users"
   add_foreign_key "message_groups", "rooms"
   add_foreign_key "message_groups", "users"
-  add_foreign_key "messages", "conversations"
   add_foreign_key "new_messages", "conversations"
   add_foreign_key "new_messages", "users"
 end

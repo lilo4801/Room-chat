@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  get 'icons/index'
   get 'group_messages/index'
   get 'rooms/index'
   get 'conversations/index'
@@ -14,6 +15,8 @@ Rails.application.routes.draw do
   resources :conversations
   resources :rooms
   resources :group_messages
+  resources :icons
+
 
   
 
