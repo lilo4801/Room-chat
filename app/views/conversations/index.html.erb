@@ -17,7 +17,9 @@
            
                        <p>
                     - <%= current_user.id == user_mes.user_id ? 'You' : @conversation.opposed_user(current_user).email %> : 
-                        <%= user_mes.body %>
+                        <% check_has_icon(user_mes.body).each do |value| %>
+                          <%= value.include?("/uploads/icon/image/") ? image_tag(value) : value %>
+                        <% end %>
                       </p>
           
                <% end %>

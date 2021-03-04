@@ -8,7 +8,7 @@ class IconsController < ApplicationController
   def create
     @icon = Icon.new(params_icon)
     @icon.save
-
+    redirect_to icons_path
   end
   private
     def params_icon

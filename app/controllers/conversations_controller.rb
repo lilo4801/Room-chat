@@ -9,7 +9,7 @@ class ConversationsController < ApplicationController
   def create
   	
   	@a = Conversation.get(current_user.id,params[:user_id].to_i)
-  	@new = @a.first
+  	@new = @a.first if @a.present?
   	
   	redirect_to conversations_path(conversation_id: @new.id)
   end
